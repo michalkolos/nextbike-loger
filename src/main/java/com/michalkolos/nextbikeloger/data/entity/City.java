@@ -3,9 +3,7 @@ package com.michalkolos.nextbikeloger.data.entity;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -77,7 +75,18 @@ public class City {
 	private Country country;
 
 	@OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-	private List<Place> place = new ArrayList<>();
+	private Set<Place> place = new HashSet<>();
+
+
+
+	public boolean equals(Object o) {
+		return (o instanceof City) && (((City)o).getUid() == this.getUid());
+	}
+
+	public int hashCode() {
+		return this.getUid();
+	}
+
 
 
 
@@ -209,11 +218,11 @@ public class City {
 		this.country = country;
 	}
 
-	public List<Place> getPlace() {
+	public Set<Place> getPlace() {
 		return place;
 	}
 
-	public void setPlace(List<Place> place) {
+	public void setPlace(Set<Place> place) {
 		this.place = place;
 	}
 }

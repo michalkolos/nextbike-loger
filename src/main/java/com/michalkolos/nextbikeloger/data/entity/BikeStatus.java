@@ -33,41 +33,20 @@ public class BikeStatus {
 	@JoinColumn(name = "BIKE_ID")
 	private Bike bike;
 
-//	@JsonCreator
 	public BikeStatus(){}
 
-//	@JsonCreator
-//	public BikeStatus(
+	public boolean equals(Object o) {
+		return (o instanceof BikeStatus) &&
+				(((BikeStatus)o).getTimestamp()).equals(this.getTimestamp()) &&
+				(((BikeStatus)o).getPedelec_battery()) == (this.getPedelec_battery()) &&
+				(((BikeStatus)o).getActive()) == (this.getActive()) &&
+				(((BikeStatus)o).getState()).equals(this.getState()) &&
+				(((BikeStatus)o).getBike()).equals(this.getBike());
+	}
 
-//			@JacksonXmlProperty(localName = "active", isAttribute = true)
-//			int active,
-//
-//			@JacksonXmlProperty(localName = "state", isAttribute = true)
-//			String  state,
-//
-//			@JacksonXmlProperty(localName = "bike_type", isAttribute = true)
-//			int bike_type,
-//
-//			@JacksonXmlProperty(localName = "lock_types", isAttribute = true)
-//			String lock_types,
-//
-//			@JacksonXmlProperty(localName = "electric_lock", isAttribute = true)
-//			int electric_lock,
-//
-//			@JacksonXmlProperty(localName = "boardcomputer", isAttribute = true)
-//			int boardcomputer,
-//
-//			@JacksonXmlProperty(localName = "pedelec_battery", isAttribute = true)
-//			String pedelec_battery
-//	){
-//		this.active = active;
-//		this.state = state;
-//		this.bike_type = bike_type;
-//		this.lock_types = lock_types;
-//		this.electric_lock = electric_lock;
-//		this.boardcomputer = boardcomputer;
-//		this.pedelec_battery = pedelec_battery;
-//	}
+	public int hashCode() {
+		return (Long.toString(this.getTimestamp().getNanos())).hashCode();
+	}
 
 	public long getId() {
 		return id;

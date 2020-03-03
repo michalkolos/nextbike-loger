@@ -7,6 +7,10 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.michalkolos.nextbikeloger.data.entity.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 @Service
 public class DataDeserializationService {
 
@@ -20,6 +24,7 @@ public class DataDeserializationService {
 		xmlMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
 
 		Markers markers = xmlMapper.readValue(xmlString, Markers.class);
+
 
 		for (Country country: markers.getCountry()) {
 

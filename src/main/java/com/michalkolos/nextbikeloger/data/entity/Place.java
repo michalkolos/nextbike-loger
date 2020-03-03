@@ -75,6 +75,18 @@ public class Place {
 	private Set<BikeStatus> bikeStatus = new HashSet<>();
 
 
+
+	public boolean equals(Object o) {
+		return (o instanceof Place) && (((Place)o).getUid() == this.getUid());
+	}
+
+	public int hashCode() {
+		return this.getUid();
+	}
+
+
+
+
 	public long getId() {
 		return id;
 	}

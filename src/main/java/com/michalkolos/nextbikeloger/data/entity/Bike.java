@@ -2,7 +2,6 @@ package com.michalkolos.nextbikeloger.data.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,6 +20,17 @@ public class Bike {
 
 	@OneToMany(mappedBy = "bike")
 	private Set<BikeStatus> bikeStatuses = new HashSet<>();
+
+
+
+	public boolean equals(Object o) {
+		return (o instanceof Bike) && (((Bike)o).getNumber() == this.getNumber());
+	}
+
+	public int hashCode() {
+		return this.getNumber();
+	}
+
 
 
 	public long getId() {

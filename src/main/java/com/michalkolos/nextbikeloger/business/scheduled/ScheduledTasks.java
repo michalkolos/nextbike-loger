@@ -45,6 +45,8 @@ public class ScheduledTasks {
 			log.error("Error forming url to Nextbike API.");
 		}catch (JsonProcessingException e){
 			log.error("Unable to process xml data.");
+
+			e.printStackTrace();
 		}catch (IOException e) {
 			log.error("Error getting data from Nextbike API.");
 		}
