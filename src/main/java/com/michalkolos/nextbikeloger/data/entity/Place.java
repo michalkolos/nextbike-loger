@@ -1,40 +1,67 @@
 package com.michalkolos.nextbikeloger.data.entity;
 
-import antlr.collections.List;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.michalkolos.nextbikeloger.data.serial.BikeDeserializer;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
+
 
 @Entity
 public class Place {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="PLACE_ID")
+	@Column(name = "PLACE_ID")
 	private long id;
 
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "UID")
 	private int uid;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "LAT")
 	private double lat;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "LNG")
 	private double lng;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "NAME")
 	private String name;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "SPOT")
 	private int spot;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "NUMBER")
 	private int number;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "BIKES")
 	private int bikes;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "BOOKED_BIKES")
 	private int booked_bikes;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "FREE_RACKS")
 	private int free_racks;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "TERMINAL_TYPE")
 	private String terminal_type;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "BIKE_TYPES")
 	private String bike_types;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "PLACE_TYPES")
 	private String place_type;
 
@@ -42,9 +69,10 @@ public class Place {
 	@JoinColumn
 	private City city;
 
-	@OneToMany(mappedBy = "place")
-	private Set<BikeStatus> bikeStatuses;
 
+	@OneToMany(mappedBy = "place")
+	@JacksonXmlProperty(localName = "bike")
+	private Set<BikeStatus> bikeStatus = new HashSet<>();
 
 
 	public long getId() {
@@ -159,11 +187,11 @@ public class Place {
 		this.city = city;
 	}
 
-	public Set<BikeStatus> getBikeStatuses() {
-		return bikeStatuses;
+	public Set<BikeStatus> getBikeStatus() {
+		return bikeStatus;
 	}
 
-	public void setBikeStatuses(Set<BikeStatus> bikeStatuses) {
-		this.bikeStatuses = bikeStatuses;
+	public void setBikeStatus(Set<BikeStatus> bikeStatus) {
+		this.bikeStatus = bikeStatus;
 	}
 }

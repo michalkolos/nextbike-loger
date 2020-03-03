@@ -1,7 +1,12 @@
 package com.michalkolos.nextbikeloger.data.entity;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class City {
@@ -11,32 +16,59 @@ public class City {
 	@Column(name = "CITY_ID")
 	private long id;
 
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "UID")
 	private int uid;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "LAT")
 	private double lat;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "LNG")
 	private double lng;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "ZOOM")
 	private int zoom;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "ALIAS")
 	private String alias;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "NAME")
 	private String name;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "NUM_PLACES")
 	private int num_places;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "REFRESH_RATE")
 	private int refresh_rate;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "BOUNDS")
 	private String bounds;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "BOOKED_BIKES")
 	private int booked_bikes;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "SET_POINT_BIKES")
 	private int set_point_bikes;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "AVAILABLE_BIKES")
 	private int available_bikes;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "RETURN_TO_OFFICIAL_ONLY")
 	private int return_to_official_only;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "BIKE_TYPES")
 	private String bike_types;
 
@@ -45,7 +77,8 @@ public class City {
 	private Country country;
 
 	@OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-	private List<Place> places;
+	private List<Place> place = new ArrayList<>();
+
 
 
 	public long getId() {
@@ -176,11 +209,11 @@ public class City {
 		this.country = country;
 	}
 
-	public List<Place> getPlaces() {
-		return places;
+	public List<Place> getPlace() {
+		return place;
 	}
 
-	public void setPlaces(List<Place> places) {
-		this.places = places;
+	public void setPlace(List<Place> place) {
+		this.place = place;
 	}
 }

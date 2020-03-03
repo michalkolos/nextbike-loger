@@ -1,49 +1,77 @@
 package com.michalkolos.nextbikeloger.data.entity;
 
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Table(name = "COUNTRY")
-public class Country {
+public class Country{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "COUNTRY_ID")
 	private long id;
 
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "LAT")
 	private double lat;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "LNG")
 	private double lng;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "ZOOM")
 	private int zoom;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "NAME")
 	private String name;
-	@Column(name = "DOMAIN")
-	private String domain;
-	@Column(name = "LANGUAGE")
-	private String language;
-	@Column(name = "EMAIL")
-	private String email;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "TIMEZONE")
 	private String timezone;
-	@Column(name = "CURRENCY")
-	private String currency;
-	@Column(name = "SYSTEM_OPERATOR_ADDRESS")
-	private String system_operator_address;
+
+	@JacksonXmlProperty(isAttribute = true)
+	@Column(name = "COUNTRY")
+	private String country;
+
+	@JacksonXmlProperty(isAttribute = true)
+	@Column(name = "COUNTRY_NAME")
+	private String country_name;
+
 	@Column(name = "BOOKED_BIKES")
+	@JacksonXmlProperty(isAttribute = true)
 	private int booked_bikes;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "SET_POINT_BIKES")
 	private int set_point_bikes;
+
+	@JacksonXmlProperty(isAttribute = true)
 	@Column(name = "AVAILABLE_BIKES")
 	private int available_bikes;
 
+
+
 	@OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
-	private List<City> cities;
+	private List<City> city = new ArrayList<>();
 
 
+
+
+//	public boolean equals(Object o) {
+//		return (o instanceof Country) && (((Country)o).getCountry()).equals(this.getCountry());
+//	}
+//
+//	public int hashCode() {
+//		return this.getCountry().hashCode();
+//	}
 
 	public long getId() {
 		return id;
@@ -85,30 +113,6 @@ public class Country {
 		this.name = name;
 	}
 
-	public String getDomain() {
-		return domain;
-	}
-
-	public void setDomain(String domain) {
-		this.domain = domain;
-	}
-
-	public String getLanguage() {
-		return language;
-	}
-
-	public void setLanguage(String language) {
-		this.language = language;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getTimezone() {
 		return timezone;
 	}
@@ -117,20 +121,20 @@ public class Country {
 		this.timezone = timezone;
 	}
 
-	public String getCurrency() {
-		return currency;
+	public String getCountry_name() {
+		return country_name;
 	}
 
-	public void setCurrency(String currency) {
-		this.currency = currency;
+	public void setCountry_name(String country_name) {
+		this.country_name = country_name;
 	}
 
-	public String getSystem_operator_address() {
-		return system_operator_address;
+	public String getCountry() {
+		return country;
 	}
 
-	public void setSystem_operator_address(String system_operator_address) {
-		this.system_operator_address = system_operator_address;
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	public int getBooked_bikes() {
@@ -157,11 +161,11 @@ public class Country {
 		this.available_bikes = available_bikes;
 	}
 
-	public List<City> getCities() {
-		return cities;
+	public List<City> getCity() {
+		return city;
 	}
 
-	public void setCities(List<City> cities) {
-		this.cities = cities;
+	public void setCity(List<City> city) {
+		this.city = city;
 	}
 }

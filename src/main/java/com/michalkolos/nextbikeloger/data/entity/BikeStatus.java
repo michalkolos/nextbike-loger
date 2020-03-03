@@ -1,10 +1,14 @@
 package com.michalkolos.nextbikeloger.data.entity;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.michalkolos.nextbikeloger.data.serial.BikeDeserializer;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@JsonDeserialize(using = BikeDeserializer.class)
 public class BikeStatus {
 
 	@Id
@@ -17,16 +21,9 @@ public class BikeStatus {
 	private int active;
 	@Column(name = "STATE")
 	private String state;
-	@Column(name = "BIKE_TYPE")
-	private int bike_type;
-	@Column(name = "LOCK_TYPES")
-	private String lock_types;
-	@Column(name = "ELECTRIC_LOCK")
-	private int electric_lock;
-	@Column(name = "BOARDCOMPUTER")
-	private int boardcomputer;
+
 	@Column(name = "PEDELEC_BATTERY")
-	private String pedelec_battery;
+	private int pedelec_battery;
 
 	@ManyToOne
 	@JoinColumn(name = "PLACE_ID")
@@ -36,6 +33,41 @@ public class BikeStatus {
 	@JoinColumn(name = "BIKE_ID")
 	private Bike bike;
 
+//	@JsonCreator
+	public BikeStatus(){}
+
+//	@JsonCreator
+//	public BikeStatus(
+
+//			@JacksonXmlProperty(localName = "active", isAttribute = true)
+//			int active,
+//
+//			@JacksonXmlProperty(localName = "state", isAttribute = true)
+//			String  state,
+//
+//			@JacksonXmlProperty(localName = "bike_type", isAttribute = true)
+//			int bike_type,
+//
+//			@JacksonXmlProperty(localName = "lock_types", isAttribute = true)
+//			String lock_types,
+//
+//			@JacksonXmlProperty(localName = "electric_lock", isAttribute = true)
+//			int electric_lock,
+//
+//			@JacksonXmlProperty(localName = "boardcomputer", isAttribute = true)
+//			int boardcomputer,
+//
+//			@JacksonXmlProperty(localName = "pedelec_battery", isAttribute = true)
+//			String pedelec_battery
+//	){
+//		this.active = active;
+//		this.state = state;
+//		this.bike_type = bike_type;
+//		this.lock_types = lock_types;
+//		this.electric_lock = electric_lock;
+//		this.boardcomputer = boardcomputer;
+//		this.pedelec_battery = pedelec_battery;
+//	}
 
 	public long getId() {
 		return id;
@@ -69,43 +101,11 @@ public class BikeStatus {
 		this.state = state;
 	}
 
-	public int getBike_type() {
-		return bike_type;
-	}
-
-	public void setBike_type(int bike_type) {
-		this.bike_type = bike_type;
-	}
-
-	public String getLock_types() {
-		return lock_types;
-	}
-
-	public void setLock_types(String lock_types) {
-		this.lock_types = lock_types;
-	}
-
-	public int getElectric_lock() {
-		return electric_lock;
-	}
-
-	public void setElectric_lock(int electric_lock) {
-		this.electric_lock = electric_lock;
-	}
-
-	public int getBoardcomputer() {
-		return boardcomputer;
-	}
-
-	public void setBoardcomputer(int boardcomputer) {
-		this.boardcomputer = boardcomputer;
-	}
-
-	public String getPedelec_battery() {
+	public int getPedelec_battery() {
 		return pedelec_battery;
 	}
 
-	public void setPedelec_battery(String pedelec_battery) {
+	public void setPedelec_battery(int pedelec_battery) {
 		this.pedelec_battery = pedelec_battery;
 	}
 

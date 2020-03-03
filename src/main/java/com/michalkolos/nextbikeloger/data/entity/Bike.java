@@ -1,6 +1,7 @@
 package com.michalkolos.nextbikeloger.data.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,11 +13,14 @@ public class Bike {
 	@Column(name="BIKE_ID")
 	private long id;
 
-	@Column(name = "BIKE_NUMBER")
-	private int bike_number;
+	@Column(name = "NUMBER")
+	private int number;
+
+	@Column(name = "BIKE_TYPE")
+	private int bike_type;
 
 	@OneToMany(mappedBy = "bike")
-	private Set<BikeStatus> bikeStatuses;
+	private Set<BikeStatus> bikeStatuses = new HashSet<>();
 
 
 	public long getId() {
@@ -27,12 +31,20 @@ public class Bike {
 		this.id = id;
 	}
 
-	public int getBike_number() {
-		return bike_number;
+	public int getNumber() {
+		return number;
 	}
 
-	public void setBike_number(int bike_number) {
-		this.bike_number = bike_number;
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public int getBike_type() {
+		return bike_type;
+	}
+
+	public void setBike_type(int bike_type) {
+		this.bike_type = bike_type;
 	}
 
 	public Set<BikeStatus> getBikeStatuses() {
