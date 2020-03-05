@@ -65,13 +65,13 @@ public class Country{
 
 
 
-	public boolean equals(Object o) {
-		return (o instanceof Country) && (((Country)o).getName()).equals(this.getName());
-	}
-
-	public int hashCode() {
-		return this.getName().hashCode();
-	}
+//	public boolean equals(Object o) {
+//		return (o instanceof Country) && (((Country)o).getName()).equals(this.getName());
+//	}
+//
+//	public int hashCode() {
+//		return this.getName().hashCode();
+//	}
 
 
 

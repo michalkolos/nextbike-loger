@@ -3,6 +3,7 @@ package com.michalkolos.nextbikeloger.business.scheduled;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.michalkolos.nextbikeloger.business.service.DataDeserializationService;
 import com.michalkolos.nextbikeloger.business.service.DataDownloadService;
+import com.michalkolos.nextbikeloger.business.service.DataPersistenceService;
 import com.michalkolos.nextbikeloger.data.entity.Markers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,25 +21,28 @@ public class ScheduledTasks {
 
 	DataDownloadService dataDownloadService;
 	DataDeserializationService dataDeserializationService;
-
+	DataPersistenceService dataPersistenceService;
 
 	@Autowired
 	public ScheduledTasks(
 			DataDeserializationService dataDeserializationService,
-			DataDownloadService dataDownloadService
+			DataDownloadService dataDownloadService,
+			DataPersistenceService dataPersistenceService
 	){
 		this.dataDeserializationService = dataDeserializationService;
 		this.dataDownloadService = dataDownloadService;
+		this.dataPersistenceService = dataPersistenceService;
 	}
 
-	@Scheduled(fixedRate = 10000)
+	@Scheduled(fixedDelay = 10000)
 	public void logBikes(){
 		log.info("Started logging task");
 
 		try {
 
-			String xmlString = dataDownloadService.download("http://api.nextbike.net/maps/nextbike-official.xml");
+			String xmlString = dataDownloadService.download("http://api.nextbike.net/maps/nextbike-official.xml?city=210");
 			Markers markers = dataDeserializationService.deserialize(xmlString);
+			dataPersistenceService.save(markers);
 
 
 		}catch (MalformedURLException e) {

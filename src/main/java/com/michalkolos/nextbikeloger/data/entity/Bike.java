@@ -23,13 +23,13 @@ public class Bike {
 
 
 
-	public boolean equals(Object o) {
-		return (o instanceof Bike) && (((Bike)o).getNumber() == this.getNumber());
-	}
-
-	public int hashCode() {
-		return this.getNumber();
-	}
+//	public boolean equals(Object o) {
+//		return (o instanceof Bike) && (((Bike)o).getNumber() == this.getNumber());
+//	}
+//
+//	public int hashCode() {
+//		return this.getNumber();
+//	}
 
 
 

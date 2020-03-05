@@ -76,13 +76,13 @@ public class Place {
 
 
 
-	public boolean equals(Object o) {
-		return (o instanceof Place) && (((Place)o).getUid() == this.getUid());
-	}
-
-	public int hashCode() {
-		return this.getUid();
-	}
+//	public boolean equals(Object o) {
+//		return (o instanceof Place) && (((Place)o).getUid() == this.getUid());
+//	}
+//
+//	public int hashCode() {
+//		return this.getUid();
+//	}
 
 
 

@@ -79,13 +79,13 @@ public class City {
 
 
 
-	public boolean equals(Object o) {
-		return (o instanceof City) && (((City)o).getUid() == this.getUid());
-	}
-
-	public int hashCode() {
-		return this.getUid();
-	}
+//	public boolean equals(Object o) {
+//		return (o instanceof City) && (((City)o).getUid() == this.getUid());
+//	}
+//
+//	public int hashCode() {
+//		return this.getUid();
+//	}
 
 
 

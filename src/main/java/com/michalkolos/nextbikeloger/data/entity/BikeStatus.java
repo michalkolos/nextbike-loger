@@ -35,18 +35,18 @@ public class BikeStatus {
 
 	public BikeStatus(){}
 
-	public boolean equals(Object o) {
-		return (o instanceof BikeStatus) &&
-				(((BikeStatus)o).getTimestamp()).equals(this.getTimestamp()) &&
-				(((BikeStatus)o).getPedelec_battery()) == (this.getPedelec_battery()) &&
-				(((BikeStatus)o).getActive()) == (this.getActive()) &&
-				(((BikeStatus)o).getState()).equals(this.getState()) &&
-				(((BikeStatus)o).getBike()).equals(this.getBike());
-	}
+//	public boolean equals(Object o) {
+//		return (o instanceof BikeStatus) &&
+//				(((BikeStatus)o).getTimestamp()).equals(this.getTimestamp()) &&
+//				(((BikeStatus)o).getPedelec_battery()) == (this.getPedelec_battery()) &&
+//				(((BikeStatus)o).getActive()) == (this.getActive()) &&
+//				(((BikeStatus)o).getState()).equals(this.getState()) &&
+//				(((BikeStatus)o).getBike()).equals(this.getBike());
+//	}
 
-	public int hashCode() {
-		return (Long.toString(this.getTimestamp().getNanos())).hashCode();
-	}
+//	public int hashCode() {
+//		return (Long.toString(this.getTimestamp().getNanos())).hashCode();
+//	}
 
 	public long getId() {
 		return id;
