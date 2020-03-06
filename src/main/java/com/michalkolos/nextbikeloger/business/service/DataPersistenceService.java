@@ -63,6 +63,8 @@ public class DataPersistenceService {
 			countryRepository.save(country);
 		}
 
+		int statusCount = 0;
+
 		for(Country country: markers.getCountry()){
 			for(City city: country.getCity()){
 				for(Place place: city.getPlace()){
@@ -77,11 +79,25 @@ public class DataPersistenceService {
 							}
 
 							bikeRepository.save(bikeStatus.getBike());
-							bikeStatusRepository.save(bikeStatus);
+
+							BikeStatus previousStatus = bikeStatusRepository.getTopByBikeOrderByTimestampDesc(bikeStatus.getBike());
+
+							if(previousStatus == null
+									|| !(previousStatus.getState().equals(bikeStatus.getState()))
+							        || previousStatus.getActive() != bikeStatus.getActive()
+									|| previousStatus.getPedelec_battery() != bikeStatus.getPedelec_battery()
+									|| previousStatus.getPlace().getUid() != bikeStatus.getPlace().getUid()) {
+
+									bikeStatusRepository.save(bikeStatus);
+									statusCount++;
+								}
+
 						}
 					}
 				}
 			}
 		}
+
+		log.info("Saved Bike Statuses: {}", statusCount);
 	}
 }
