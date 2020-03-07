@@ -34,7 +34,7 @@ public class ScheduledTasks {
 		this.dataPersistenceService = dataPersistenceService;
 	}
 
-	@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedRate = 5 * 60000)
 	public void logBikes(){
 		log.info("Started logging task");
 
