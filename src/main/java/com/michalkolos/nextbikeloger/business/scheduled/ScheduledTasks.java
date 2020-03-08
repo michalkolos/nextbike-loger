@@ -39,8 +39,8 @@ public class ScheduledTasks {
 		this.weatherDeserializationService = weatherDeserializationService;
 		this.weatherPersistenceService = weatherPersistenceService;
 	}
-
-	@Scheduled(fixedRate = 5 * 60000)
+	@Scheduled(fixedRate = 5000)
+//	@Scheduled(fixedRate = 5 * 60000)
 	public void logBikes(){
 		log.info("Started logging task");
 

@@ -26,7 +26,7 @@ public class WeatherPersistenceService {
 		Weather previousWeather = weatherRepository.findFirstByOrderByCalculatedTimeDesc();
 
 		if(previousWeather == null ||
-				weather.getCalculatedTime().getNanos() > previousWeather.getCalculatedTime().getNanos()){
+				weather.getCalculatedTime().toLocalDateTime().isAfter(previousWeather.getCalculatedTime().toLocalDateTime())){
 
 			weatherRepository.save(weather);
 
