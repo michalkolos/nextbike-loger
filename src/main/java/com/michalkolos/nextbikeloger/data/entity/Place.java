@@ -1,8 +1,8 @@
 package com.michalkolos.nextbikeloger.data.entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.michalkolos.nextbikeloger.data.serial.BikeDeserializer;
+
 
 import javax.persistence.*;
 import java.util.HashSet;
